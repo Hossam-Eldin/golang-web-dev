@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{{if .}}
+{{.}}
+{{end}}
+
+###################
+{{range .}}
+{{if .Name}}
+EXAMPLE #3 - {{.Name}}
+{{end}}
+{{end}}
+
+###################
+
+{{range .}}
+{{if and .Name .Admin}}
+EXAMPLE #4 - Name: {{.Name}}
+EXAMPLE #4 - Motto: {{.Motto}}
+EXAMPLE #4 - Admin: {{.Admin}}
+{{end}}
+{{end}}
+
+</body>
+</html>
