@@ -48,7 +48,7 @@ func request(conn net.Conn)  {
 }
 
 func mux(conn net.Conn, ln string)  {
-	// request line
+	// 01 request line
 	m := strings.Fields(ln)[0] // method
 	u := strings.Fields(ln)[1] // uri
 	fmt.Println("***METHOD", m)

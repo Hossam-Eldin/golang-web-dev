@@ -30,7 +30,7 @@ func main() {
 func handel( conn  net.Conn)  {
 	defer conn.Close()
 
-	//request
+	//01 request
 	request(conn)
 	//respond
 	respond(conn)
