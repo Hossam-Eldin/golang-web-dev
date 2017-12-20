@@ -7,8 +7,8 @@ import (
 )
 
 type user struct {
-	FirstName string
-	Password  int
+	UserName string
+	Password  string
 	First     string
 	Last      string
 }
