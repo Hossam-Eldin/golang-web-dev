@@ -32,15 +32,19 @@ var dbSessionsCleaned time.Time
 var tpl *template.Template
 
 func init() {
-	tpl = template.Must(template.ParseGlob("templates/*.html"))
+	tpl = template.Must(template.ParseGlob("templates/*"))
+	dbSessionsCleaned = time.Now()
+
 }
 
 func main() {
 
 	http.HandleFunc("/", index)
+	http.HandleFunc("/bar", bar)
 	http.HandleFunc("/signup", signup)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/logout", logout)
+
 	http.HandleFunc("/checkUserName", checkUserName)
 
 	http.ListenAndServe(":8080", nil)
@@ -75,14 +79,12 @@ func bar(w http.ResponseWriter, req *http.Request)  {
 
 
 func signup(w http.ResponseWriter, req *http.Request) {
-	//show user with getuser func if not logged in send him back to index
-
-	u:=getUser(w,req)
-	if !alreadyLoggedIn(w,req){
-		http.Redirect(w,req,"/", http.StatusSeeOther)
+	if alreadyLoggedIn(w, req) {
+		http.Redirect(w, req, "/", http.StatusSeeOther)
+		return
 	}
-
 	var u user
+	// process form submission
 	if req.Method == http.MethodPost {
 		// get form values
 		un := req.FormValue("username")
@@ -90,45 +92,35 @@ func signup(w http.ResponseWriter, req *http.Request) {
 		f := req.FormValue("firstname")
 		l := req.FormValue("lastname")
 		r := req.FormValue("role")
-
 		// username taken?
 		if _, ok := dbUsers[un]; ok {
 			http.Error(w, "Username already taken", http.StatusForbidden)
 			return
 		}
-
-		//create session
-		sId := uuid.NewV4()
-
-
-			c := &http.Cookie{
-				Name:  "session",
-				Value: sId.String(),
-			}
-			c.MaxAge =sessionLength
-			http.SetCookie(w,c)
-			dbSessions[c.Value] = session{un, time.Now()}
-
-
+		// create session
+		sID := uuid.NewV4()
+		c := &http.Cookie{
+			Name:  "session",
+			Value: sID.String(),
+		}
+		c.MaxAge = sessionLength
+		http.SetCookie(w, c)
+		dbSessions[c.Value] = session{un, time.Now()}
 		// store user in dbUsers
-		//generate password bcrypt
 		bs, err := bcrypt.GenerateFromPassword([]byte(p), bcrypt.MinCost)
-		if err !=nil{
+		if err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
 		}
-
-		u= user{un ,bs, f,l,r}
+		u = user{un, bs, f, l, r}
 		dbUsers[un] = u
-		http.Redirect(w,req,"/",http.StatusSeeOther)
+		// redirect
+		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
-
 	}
-showSessions()
-	tpl.ExecuteTemplate(w, "signup.html", nil)
+	showSessions() // for demonstration purposes
+	tpl.ExecuteTemplate(w, "signup.html", u)
 }
-
-
 
 
 func login(w http.ResponseWriter, req *http.Request) {
