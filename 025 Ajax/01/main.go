@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
-	"fmt"
 )
 
 var tpl *template.Template
@@ -13,16 +13,16 @@ func init() {
 }
 
 func main() {
-	http.HandleFunc("/",index)
-	http.HandleFunc("/joo",joo)
+	http.HandleFunc("/", index)
+	http.HandleFunc("/joo", joo)
 	http.ListenAndServe(":8080", nil)
 }
 
-func index(w http.ResponseWriter, req *http.Request)  {
-	tpl.ExecuteTemplate(w,"index.html",nil)
+func index(w http.ResponseWriter, req *http.Request) {
+	tpl.ExecuteTemplate(w, "index.html", nil)
 }
 
-func joo(w http.ResponseWriter, req *http.Request)  {
-	s:="this from jojo"
-	fmt.Fprintln(w,s)
+func joo(w http.ResponseWriter, req *http.Request) {
+	s := "this from jojo"
+	fmt.Fprintln(w, s)
 }

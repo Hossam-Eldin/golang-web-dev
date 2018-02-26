@@ -1,10 +1,10 @@
 package main
 
 import (
-	"html/template"
-	"net/http"
 	"fmt"
+	"html/template"
 	"io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
 )
@@ -16,17 +16,17 @@ func init() {
 }
 
 func main() {
-	http.HandleFunc("/",file)
+	http.HandleFunc("/", file)
 	http.ListenAndServe(":8080", nil)
 }
 
-func file(w  http.ResponseWriter, req *http.Request){
-var s string
-	if req.Method == http.MethodPost{
+func file(w http.ResponseWriter, req *http.Request) {
+	var s string
+	if req.Method == http.MethodPost {
 		//open the file
-		f, h, err :=req.FormFile("q")
-		if err !=nil{
-			http.Error(w,err.Error(),http.StatusInternalServerError)
+		f, h, err := req.FormFile("q")
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 		defer f.Close()
@@ -37,8 +37,8 @@ var s string
 
 		//read the file
 		bs, err := ioutil.ReadAll(f)
-		if err !=nil{
-			http.Error(w,err.Error(),http.StatusInternalServerError)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
 		s = string(bs)

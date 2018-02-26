@@ -1,11 +1,11 @@
 package main
 
 import (
-	"net"
-	"log"
-	"io"
 	"bufio"
 	"fmt"
+	"io"
+	"log"
+	"net"
 )
 
 func main() {
@@ -28,21 +28,19 @@ func main() {
 
 }
 
-
-func serve(conn net.Conn){
+func serve(conn net.Conn) {
 	defer conn.Close()
 
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
-		ln:=scanner.Text()
+		ln := scanner.Text()
 		fmt.Println(ln)
-		if ln == ""{
+		if ln == "" {
 			fmt.Println("something is wrong")
 			break
 		}
 	}
 	fmt.Println("cod go here")
 	io.WriteString(conn, "i see you")
-
 
 }

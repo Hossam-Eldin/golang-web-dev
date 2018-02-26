@@ -1,20 +1,19 @@
 package main
 
 import (
-	"net/http"
 	"io"
+	"net/http"
 )
 
-func me(w http.ResponseWriter, req *http.Request){
-	io.WriteString(w,"me")
+func me(w http.ResponseWriter, req *http.Request) {
+	io.WriteString(w, "me")
 }
-func dog(w http.ResponseWriter, req *http.Request){
-	io.WriteString(w,"dog")
+func dog(w http.ResponseWriter, req *http.Request) {
+	io.WriteString(w, "dog")
 }
-func index(w http.ResponseWriter, req *http.Request){
-	io.WriteString(w,"main")
+func index(w http.ResponseWriter, req *http.Request) {
+	io.WriteString(w, "main")
 }
-
 
 func main() {
 	http.HandleFunc("/me/", me)

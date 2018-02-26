@@ -2,8 +2,8 @@ package main
 
 import (
 	"html/template"
-	"os"
 	"log"
+	"os"
 )
 
 var tpl *template.Template
@@ -16,7 +16,6 @@ type sage struct {
 func init() {
 	tpl = template.Must(template.ParseFiles("struct.html"))
 }
-
 
 func main() {
 

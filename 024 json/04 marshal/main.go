@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"log"
 	"fmt"
+	"log"
 )
 
 type model struct {
@@ -12,7 +12,7 @@ type model struct {
 }
 
 func main() {
-	m :=model{
+	m := model{
 		State: true,
 		Pictures: []string{
 			"one.jpg",
@@ -21,8 +21,8 @@ func main() {
 		},
 	}
 	fmt.Println(m)
-	bs,err:=json.Marshal(m)
-	if err !=nil{
+	bs, err := json.Marshal(m)
+	if err != nil {
 		log.Fatalln(err)
 	}
 	fmt.Println(string(bs))

@@ -2,8 +2,8 @@ package main
 
 import (
 	"html/template"
-	"os"
 	"log"
+	"os"
 )
 
 var tpl *template.Template
@@ -14,9 +14,9 @@ func init() {
 
 func main() {
 
-	err:= tpl.ExecuteTemplate(os.Stdout,"index.html" ,42)
+	err := tpl.ExecuteTemplate(os.Stdout, "index.html", 42)
 
-	if err !=nil{
+	if err != nil {
 		log.Fatalln(err)
 	}
 

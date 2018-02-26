@@ -3,8 +3,8 @@ package main
 import (
 	"crypto/hmac"
 	"crypto/sha256"
-	"io"
 	"fmt"
+	"io"
 	"net/http"
 	"strings"
 )
@@ -50,7 +50,7 @@ func index(w http.ResponseWriter, req *http.Request) {
 	</html>`)
 }
 
-func auth(w http.ResponseWriter, req *http.Request)  {
+func auth(w http.ResponseWriter, req *http.Request) {
 	c, err := req.Cookie("session")
 	if err != nil {
 		http.Redirect(w, req, "/", http.StatusSeeOther)

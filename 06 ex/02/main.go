@@ -2,20 +2,18 @@ package main
 
 import (
 	"html/template"
-	"os"
 	"log"
+	"os"
 )
 
 var tpl *template.Template
 
-
-
-type cHotel  struct {
-	Name string
+type cHotel struct {
+	Name    string
 	Address string
-	City string
-	Zip string
-	Region string
+	City    string
+	Zip     string
+	Region  string
 }
 
 type hotels []cHotel
@@ -43,8 +41,8 @@ func main() {
 		},
 	}
 
-	err :=tpl.Execute(os.Stdout,h)
-	if err != nil{
+	err := tpl.Execute(os.Stdout, h)
+	if err != nil {
 		log.Fatalln(err)
 	}
 }

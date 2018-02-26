@@ -1,26 +1,26 @@
 package main
 
 import (
-	"net"
-	"log"
-	"io"
 	"fmt"
+	"io"
+	"log"
+	"net"
 )
 
 func main() {
-	li , err:= net.Listen("tcp", ":8080")
-	if err !=nil{
+	li, err := net.Listen("tcp", ":8080")
+	if err != nil {
 		log.Fatalln(err)
 	}
-	 defer li.Close()
+	defer li.Close()
 
 	for {
-		conn,err :=li.Accept()
-		if err !=nil{
+		conn, err := li.Accept()
+		if err != nil {
 			log.Fatalln(err)
 			continue
 		}
-		io.WriteString( conn,"\n Hello from tcp server \n")
+		io.WriteString(conn, "\n Hello from tcp server \n")
 		fmt.Fprintln(conn, "How is your day?")
 		fmt.Fprintf(conn, "%v", "Well, I hope!")
 		conn.Close()

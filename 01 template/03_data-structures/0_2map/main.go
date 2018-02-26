@@ -2,8 +2,8 @@ package main
 
 import (
 	"html/template"
-	"os"
 	"log"
+	"os"
 )
 
 var tpl *template.Template
@@ -14,11 +14,11 @@ func init() {
 
 func main() {
 	sages := map[string]string{
-		"india"	    :"Gandhi",
-		"usa"	    :"MLK",
-		"monk"      : "Buddha",
+		"india":      "Gandhi",
+		"usa":        "MLK",
+		"monk":       "Buddha",
 		"in the sky": "Jesus",
-		"mercy" : "Muhammad"}
+		"mercy":      "Muhammad"}
 	err := tpl.Execute(os.Stdout, sages)
 	if err != nil {
 		log.Fatalln(err)

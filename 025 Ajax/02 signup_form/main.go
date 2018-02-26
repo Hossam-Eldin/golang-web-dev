@@ -1,13 +1,13 @@
 package main
 
 import (
-	"time"
-	"net/http"
-	"html/template"
+	"fmt"
 	"github.com/satori/go.uuid"
 	"golang.org/x/crypto/bcrypt"
+	"html/template"
 	"io/ioutil"
-	"fmt"
+	"net/http"
+	"time"
 )
 
 type user struct {
@@ -50,33 +50,30 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-
 func index(w http.ResponseWriter, req *http.Request) {
 	//show the user using getuser func in session than show session for display and executeTemplate
-	u := getUser(w,req)
+	u := getUser(w, req)
 	showSessions()
 	tpl.ExecuteTemplate(w, "index.html", u)
 }
 
-func bar(w http.ResponseWriter, req *http.Request)  {
+func bar(w http.ResponseWriter, req *http.Request) {
 	//show user with getuser func if not logged in send him back to index
-	u:=getUser(w,req)
-	if !alreadyLoggedIn(w,req){
-		http.Redirect(w,req,"/", http.StatusSeeOther)
+	u := getUser(w, req)
+	if !alreadyLoggedIn(w, req) {
+		http.Redirect(w, req, "/", http.StatusSeeOther)
 	}
 
 	//if the role for the user no 007 give him error than execute the bar page
 
-	if u.Role != "007"{
-		http.Error(w,"You must be 007 to enter the bar", http.StatusForbidden)
+	if u.Role != "007" {
+		http.Error(w, "You must be 007 to enter the bar", http.StatusForbidden)
 		return
 	}
 	showSessions()
-	tpl.ExecuteTemplate(w,"bar.html",u)
+	tpl.ExecuteTemplate(w, "bar.html", u)
 
 }
-
-
 
 func signup(w http.ResponseWriter, req *http.Request) {
 	if alreadyLoggedIn(w, req) {
@@ -122,14 +119,13 @@ func signup(w http.ResponseWriter, req *http.Request) {
 	tpl.ExecuteTemplate(w, "signup.html", u)
 }
 
-
 func login(w http.ResponseWriter, req *http.Request) {
 	if alreadyLoggedIn(w, req) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
 		return
 	}
 
-	if req.Method == http.MethodPost{
+	if req.Method == http.MethodPost {
 		un := req.FormValue("username")
 		p := req.FormValue("password")
 		// is there a username?
@@ -162,10 +158,6 @@ func login(w http.ResponseWriter, req *http.Request) {
 	tpl.ExecuteTemplate(w, "login.html", nil)
 }
 
-
-
-
-
 func logout(w http.ResponseWriter, req *http.Request) {
 	if !alreadyLoggedIn(w, req) {
 		http.Redirect(w, req, "/", http.StatusSeeOther)
@@ -188,7 +180,6 @@ func logout(w http.ResponseWriter, req *http.Request) {
 
 	http.Redirect(w, req, "/login", http.StatusSeeOther)
 }
-
 
 func checkUserName(w http.ResponseWriter, req *http.Request) {
 	sampleUsers := map[string]bool{

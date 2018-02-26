@@ -1,16 +1,16 @@
 package main
 
 import (
-	"net/http"
 	"html/template"
 	"log"
+	"net/http"
 )
 
 var tpl *template.Template
 
 func main() {
 	http.HandleFunc("/", index)
-		http.HandleFunc("/deadpool.jpg", serve)
+	http.HandleFunc("/deadpool.jpg", serve)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -22,6 +22,6 @@ func index(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func serve (w http.ResponseWriter, req *http.Request){
+func serve(w http.ResponseWriter, req *http.Request) {
 	http.ServeFile(w, req, "deadpool.jpg")
 }

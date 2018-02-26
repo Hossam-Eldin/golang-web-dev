@@ -16,4 +16,3 @@ func main() {
 	fmt.Println(s)
 	fmt.Println(s64)
 }
-

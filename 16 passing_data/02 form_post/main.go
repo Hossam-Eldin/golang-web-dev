@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"io"
+	"net/http"
 )
 
 func main() {
@@ -10,7 +10,7 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func index(w http.ResponseWriter, req *http.Request){
+func index(w http.ResponseWriter, req *http.Request) {
 
 	v := req.FormValue("q")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")

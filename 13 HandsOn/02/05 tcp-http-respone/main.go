@@ -1,11 +1,11 @@
 package main
 
 import (
-	"net"
-	"log"
-	"io"
 	"bufio"
 	"fmt"
+	"io"
+	"log"
+	"net"
 	"strings"
 )
 
@@ -29,15 +29,14 @@ func main() {
 
 }
 
-
-func serve(conn net.Conn){
+func serve(conn net.Conn) {
 	defer conn.Close()
 	var i int
 
 	var rMethod, rURI string
 	scanner := bufio.NewScanner(conn)
 	for scanner.Scan() {
-		ln:=scanner.Text()
+		ln := scanner.Text()
 		fmt.Println(ln)
 		if i == 0 {
 			// we're in REQUEST LINE
@@ -47,11 +46,11 @@ func serve(conn net.Conn){
 			fmt.Println("METHOD:", rMethod)
 			fmt.Println("URI:", rURI)
 		}
-		if ln == ""{
+		if ln == "" {
 			fmt.Println("something is wrong")
 			break
 		}
-		i ++
+		i++
 	}
 	body := "CHECK OUT THE RESPONSE BODY PAYLOAD"
 	io.WriteString(conn, "HTTP/1.1 200 OK\r\n")

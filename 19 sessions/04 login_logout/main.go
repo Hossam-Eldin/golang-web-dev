@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net/http"
-	"html/template"
-	"golang.org/x/crypto/bcrypt"
 	"github.com/satori/go.uuid"
+	"golang.org/x/crypto/bcrypt"
+	"html/template"
+	"net/http"
 )
 
 type user struct {

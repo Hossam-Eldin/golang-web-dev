@@ -2,8 +2,8 @@ package main
 
 import (
 	"html/template"
-	"os"
 	"log"
+	"os"
 )
 
 type Person struct {
@@ -19,14 +19,13 @@ func init() {
 
 func main() {
 
-
-	p :=Person{
+	p := Person{
 		Name: "Archer",
-		Age: 35,
+		Age:  35,
 	}
-	err:= tpl.ExecuteTemplate(os.Stdout,"index.html" ,p)
+	err := tpl.ExecuteTemplate(os.Stdout, "index.html", p)
 
-	if err !=nil{
+	if err != nil {
 		log.Fatalln(err)
 	}
 

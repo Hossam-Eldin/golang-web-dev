@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
-	"github.com/satori/go.uuid"
 	"fmt"
+	"github.com/satori/go.uuid"
+	"net/http"
 	"time"
 )
 
@@ -61,10 +61,9 @@ func cleanSessions() {
 	showSessions()             // for demonstration purposes
 }
 
-
-func showSessions()  {
+func showSessions() {
 	fmt.Println("********")
-	for k, v := range dbSessions{
+	for k, v := range dbSessions {
 		fmt.Println(k, v.un)
 	}
 	fmt.Println("")

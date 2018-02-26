@@ -8,7 +8,7 @@ import (
 var tpl *template.Template
 
 func init() {
-	tpl= template.Must(template.ParseGlob("templates/*.html"))
+	tpl = template.Must(template.ParseGlob("templates/*.html"))
 }
 
 func main() {
@@ -16,7 +16,6 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-
-func index(w http.ResponseWriter, req *http.Request){
-	tpl.ExecuteTemplate(w,"index.html", nil)
+func index(w http.ResponseWriter, req *http.Request) {
+	tpl.ExecuteTemplate(w, "index.html", nil)
 }

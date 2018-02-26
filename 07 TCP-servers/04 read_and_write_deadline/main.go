@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net"
-	"log"
-	"fmt"
 	"bufio"
+	"fmt"
+	"log"
+	"net"
 	"time"
 )
 
@@ -27,7 +27,7 @@ func main() {
 }
 func handel(conn net.Conn) {
 	err := conn.SetDeadline(time.Now().Add(10 * time.Second))
-	if err != nil{
+	if err != nil {
 		log.Fatalln("connection time out")
 	}
 
@@ -38,7 +38,7 @@ func handel(conn net.Conn) {
 		fmt.Fprintf(conn, "I heard you say: %s\n", ln)
 
 	}
-	defer  conn.Close()
+	defer conn.Close()
 
 	fmt.Println("code go here")
 }

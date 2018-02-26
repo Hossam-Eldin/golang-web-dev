@@ -2,13 +2,12 @@ package main
 
 import (
 	"html/template"
-	"strings"
-	"os"
 	"log"
+	"os"
+	"strings"
 )
 
 var tpl *template.Template
-
 
 type sage struct {
 	Name  string
@@ -23,7 +22,7 @@ type car struct {
 
 var fm = template.FuncMap{
 	"uc": strings.ToUpper,
-	"ft" : firstThree,
+	"ft": firstThree,
 }
 
 func init() {
@@ -77,8 +76,8 @@ func main() {
 		cars,
 	}
 
-	err :=tpl.ExecuteTemplate(os.Stdout,"tpl.html", data)
-	if err !=nil{
+	err := tpl.ExecuteTemplate(os.Stdout, "tpl.html", data)
+	if err != nil {
 		log.Fatalln(err)
 	}
 

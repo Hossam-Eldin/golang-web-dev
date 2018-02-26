@@ -1,9 +1,9 @@
 package main
 
 import (
-	"text/template"
-	"os"
 	"log"
+	"os"
+	"text/template"
 )
 
 var tpl *template.Template
@@ -15,9 +15,8 @@ type user struct {
 }
 
 func init() {
-	tpl= template.Must(template.ParseFiles("and.html"))
+	tpl = template.Must(template.ParseFiles("and.html"))
 }
-
 
 func main() {
 
@@ -41,8 +40,8 @@ func main() {
 
 	users := []user{u1, u2, u3}
 
-	err :=tpl.Execute(os.Stdout,users)
-	if err !=nil{
+	err := tpl.Execute(os.Stdout, users)
+	if err != nil {
 		log.Fatalln(err)
 	}
 }

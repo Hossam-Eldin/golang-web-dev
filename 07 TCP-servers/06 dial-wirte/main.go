@@ -1,19 +1,18 @@
 package main
 
 import (
-	"net"
-	"log"
 	"fmt"
+	"log"
+	"net"
 )
 
 func main() {
-	conn, err := net.Dial("tcp",":8080")
-	if err != nil{
+	conn, err := net.Dial("tcp", ":8080")
+	if err != nil {
 		log.Fatalln(err)
 	}
 
 	defer conn.Close()
 
-
-	fmt.Println(conn,"i daild you")
+	fmt.Println(conn, "i daild you")
 }

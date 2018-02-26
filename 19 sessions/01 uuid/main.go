@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
-	"github.com/satori/go.uuid"
 	"fmt"
+	"github.com/satori/go.uuid"
+	"net/http"
 )
 
 func main() {

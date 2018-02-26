@@ -1,23 +1,23 @@
 package main
 
 import (
-	"net"
-	"log"
-	"io/ioutil"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"net"
 )
 
 func main() {
 
-	conn, err := net.Dial("tcp",":8080")
-	if err != nil{
+	conn, err := net.Dial("tcp", ":8080")
+	if err != nil {
 		log.Fatalln(err)
 	}
 
 	defer conn.Close()
 
-	bs,err := ioutil.ReadFile(conn)
-	if err !=nil{
+	bs, err := ioutil.ReadFile(conn)
+	if err != nil {
 		log.Fatalln(err)
 	}
 

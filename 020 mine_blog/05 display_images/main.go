@@ -1,16 +1,16 @@
 package main
 
 import (
-	"html/template"
-	"net/http"
-	"github.com/satori/go.uuid"
-	"strings"
-	"log"
 	"crypto/sha1"
-	"io"
 	"fmt"
+	"github.com/satori/go.uuid"
+	"html/template"
+	"io"
+	"log"
+	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var tpl *template.Template
@@ -29,9 +29,9 @@ func main() {
 func index(w http.ResponseWriter, req *http.Request) {
 	c := getCookie(w, req)
 
-	if req.Method == http.MethodPost{
-		mf , fh ,err:=req.FormFile("nf")
-		if err !=nil{
+	if req.Method == http.MethodPost {
+		mf, fh, err := req.FormFile("nf")
+		if err != nil {
 			log.Fatalln(err)
 		}
 		defer mf.Close()
@@ -56,9 +56,8 @@ func index(w http.ResponseWriter, req *http.Request) {
 		mf.Seek(0, 0)
 		io.Copy(nf, mf)
 		// add filename to this user's cookie
-		c = appenVlue(w,c,fname)
+		c = appenVlue(w, c, fname)
 	}
-
 
 	xs := strings.Split(c.Value, "|")
 	tpl.ExecuteTemplate(w, "index.html", xs[1:])
@@ -79,7 +78,7 @@ func getCookie(w http.ResponseWriter, req *http.Request) *http.Cookie {
 	return c
 }
 
-func appenVlue(w http.ResponseWriter, c *http.Cookie ,fname string) *http.Cookie {
+func appenVlue(w http.ResponseWriter, c *http.Cookie, fname string) *http.Cookie {
 
 	// append
 	s := c.Value

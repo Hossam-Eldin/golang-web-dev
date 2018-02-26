@@ -1,18 +1,18 @@
 package main
 
 import (
-	"net/http"
 	"html/template"
 	"log"
+	"net/http"
 )
 
 var tpl *template.Template
 
 func main() {
-	f:= http.FileServer(http.Dir("."))
+	f := http.FileServer(http.Dir("."))
 
 	http.HandleFunc("/", index)
-	http.Handle("/all",f)
+	http.Handle("/all", f)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -24,5 +24,5 @@ func index(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
-func serve (w http.ResponseWriter, req *http.Request){
+func serve(w http.ResponseWriter, req *http.Request) {
 }

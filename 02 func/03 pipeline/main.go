@@ -2,22 +2,22 @@ package main
 
 import (
 	"html/template"
-	"os"
 	"log"
 	"math"
+	"os"
 )
 
 var tpl *template.Template
 
 func init() {
-	tpl =template.Must(template.New("").Funcs(fm).ParseFiles("pipeline.html"))
+	tpl = template.Must(template.New("").Funcs(fm).ParseFiles("pipeline.html"))
 }
 
 func double(x int) int {
 	return x + x
 }
 
-func square(x int)float64  {
+func square(x int) float64 {
 	return math.Pow(float64(x), 2)
 }
 func sqRoot(x float64) float64 {
@@ -32,11 +32,8 @@ var fm = template.FuncMap{
 
 func main() {
 
-
-
-
-	err:=tpl.ExecuteTemplate(os.Stdout,"pipeline.html",3)
-	if err != nil{
+	err := tpl.ExecuteTemplate(os.Stdout, "pipeline.html", 3)
+	if err != nil {
 		log.Fatalln(err)
 	}
 }

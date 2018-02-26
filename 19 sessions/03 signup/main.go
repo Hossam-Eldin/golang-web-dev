@@ -1,16 +1,16 @@
 package main
 
 import (
+	"github.com/satori/go.uuid"
 	"html/template"
 	"net/http"
-	"github.com/satori/go.uuid"
 )
 
 type user struct {
 	UserName string
-	Password  string
-	First     string
-	Last      string
+	Password string
+	First    string
+	Last     string
 }
 
 var tpl *template.Template

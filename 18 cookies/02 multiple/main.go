@@ -1,14 +1,14 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
 	"log"
+	"net/http"
 )
 
 func main() {
-	http.HandleFunc("/set",set)
-	http.HandleFunc("/read",read)
+	http.HandleFunc("/set", set)
+	http.HandleFunc("/read", read)
 	http.HandleFunc("/abundance", abundance)
 	http.ListenAndServe(":8080", nil)
 }

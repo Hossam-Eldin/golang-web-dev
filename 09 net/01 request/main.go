@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
-	"log"
 	"html/template"
+	"log"
+	"net/http"
 )
 
 type hotdog int

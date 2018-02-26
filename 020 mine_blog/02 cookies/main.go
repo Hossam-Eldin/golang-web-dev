@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/satori/go.uuid"
 	"html/template"
 	"net/http"
-	"github.com/satori/go.uuid"
 )
 
 var tpl *template.Template
@@ -18,11 +18,11 @@ func main() {
 }
 
 func index(w http.ResponseWriter, req *http.Request) {
-	c :=getCookie(w,req)
+	c := getCookie(w, req)
 	tpl.ExecuteTemplate(w, "index.html", c.Value)
 }
 
-func getCookie(w http.ResponseWriter, req *http.Request) *http.Cookie  {
+func getCookie(w http.ResponseWriter, req *http.Request) *http.Cookie {
 	c, err := req.Cookie("session")
 
 	if err != nil {
@@ -31,7 +31,7 @@ func getCookie(w http.ResponseWriter, req *http.Request) *http.Cookie  {
 			Name:  "session",
 			Value: sId.String(),
 		}
-		http.SetCookie(w,c)
+		http.SetCookie(w, c)
 	}
 
 	return c
